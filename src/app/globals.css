@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stone.black {
+  fill: black;
+  stroke: black;
+  stroke-opacity: 0.1;
+}
+
+.stone.white {
+  fill: seashell;
+  stroke: black;
+  stroke-opacity: 0.1;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
