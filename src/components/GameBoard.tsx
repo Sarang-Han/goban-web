@@ -1,7 +1,7 @@
 // src/components/GameBoard.tsx
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import Board from './Board';
 import GameControls from './GameControls';
 import useGame from '@/hooks/useGame';
@@ -26,6 +26,13 @@ export default function GameBoard() {
     startGame
   } = useGame();
   
+  // 컴포넌트가 마운트되면 자동으로 게임을 시작합니다
+  useEffect(() => {
+    if (!boardState) {
+      startGame();
+    }
+  }, [boardState, startGame]);
+  
   const handleIntersectionClick = useCallback((x: number, y: number) => {
     if (isGameEnded) {
       claimTerritory(x, y);
@@ -34,16 +41,10 @@ export default function GameBoard() {
     }
   }, [isGameEnded, makeMove, claimTerritory]);
   
-  if (!isGameStarted || !boardState) {
+  if (!boardState) {
     return (
       <div className="text-center p-8">
-        <h2 className="text-2xl mb-4">바둑 게임</h2>
-        <button
-          onClick={startGame}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          새 게임 시작
-        </button>
+        <h2 className="text-2xl mb-4">게임 로딩 중...</h2>
       </div>
     );
   }

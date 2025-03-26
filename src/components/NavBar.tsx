@@ -17,17 +17,6 @@ export default function NavBar({ isInGame, onNewGame }: NavBarProps) {
             Goβan <sup>BETA</sup>
           </Link>
         </div>
-        
-        <div>
-          {isInGame && (
-            <button 
-              onClick={onNewGame}
-              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              새 게임
-            </button>
-          )}
-        </div>
       </div>
     </nav>
   );

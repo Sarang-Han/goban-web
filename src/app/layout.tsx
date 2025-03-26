@@ -3,8 +3,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Goβan',
-  description: '현대적인 바둑 게임 애플리케이션',
+  title: 'Goggle',
+  description: '쉬운 기보 분석 서비스',
 };
 
 export default function RootLayout({
