@@ -41,7 +41,7 @@ export default function Board({
       .attr('width', width)
       .attr('height', height)
       .append('image')
-      .attr('xlink:href', '/images/Cerberiopsis_candelabra_square.jpg')
+      .attr('xlink:href', '/images/board.png')
       .attr('x', 0)
       .attr('y', 0)
       .attr('width', width)
@@ -114,14 +114,13 @@ export default function Board({
     stones.selectAll('.stone')
       .data(allIntersections.filter(stone => stone.stone !== StoneEnum.None))
       .enter()
-      .append('circle')
-      .attr('cx', d => stoneRadius + d.xPos * (width / size))
-      .attr('cy', d => stoneRadius + d.yPos * (height / size))
-      .attr('r', stoneRadius * 0.9)
-      .attr('class', d => `stone ${STONE_CLASSES[d.stone]}`)
-      .attr('fill', d => d.stone === StoneEnum.Black ? 'black' : 'seashell')
-      .attr('stroke', 'black')
-      .attr('stroke-opacity', 0.1);
+      .append('image')
+      .attr('xlink:href', d => d.stone === StoneEnum.Black ? '/images/black_stone.svg' : '/images/white_stone.svg')
+      .attr('x', d => stoneRadius + d.xPos * (width / size) - stoneRadius)
+      .attr('y', d => stoneRadius + d.yPos * (height / size) - stoneRadius)
+      .attr('width', stoneRadius * 2)
+      .attr('height', stoneRadius * 2)
+      .attr('class', d => `stone ${STONE_CLASSES[d.stone]}`);
     
     // 클릭 영역
     const overlay = svg.append('g').attr('class', 'overlay');
@@ -148,7 +147,7 @@ export default function Board({
       svg.append('circle')
         .attr('cx', stoneRadius + lastMove.x * (width / size))
         .attr('cy', stoneRadius + lastMove.y * (height / size))
-        .attr('r', stoneRadius / 2)
+        .attr('r', stoneRadius / 2.5)
         .attr('class', 'last-move')
         .attr('fill', 'none')
         .attr('stroke', stoneColor)
@@ -157,7 +156,6 @@ export default function Board({
     
     // 게임이 끝났을 때 영역 표시
     if (isGameEnded) {
-      // 영역 처리 로직
       // (간소화 버전에서는 생략)
     }
     

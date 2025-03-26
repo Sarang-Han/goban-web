@@ -4,8 +4,7 @@ import {
   Intersection, 
   GameState, 
   Territory, 
-  Hashable, 
-  STONE_CLASSES,
+  Hashable,
   Pointer
 } from './types';
 
